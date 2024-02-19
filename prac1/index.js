@@ -6,9 +6,9 @@ var users =[{
     kidney:[{
         healthy: false
     },{
-        healthy: true
+        healthy: false
     },{
-        healthy: true
+        healthy: false
     }]
 }];
 
@@ -52,6 +52,7 @@ app.put("/", function(req,res){
 })
 
 app.delete("/", function(req,res){
+   if(checkk()){
     let newkid=[];
     for(let i=0;i<users[0].kidney.length;i++){
         if(users[0].kidney[i].healthy){
@@ -64,6 +65,21 @@ app.delete("/", function(req,res){
     res.json({
         msg:"the unhealthy were removed"
     })
+}
+else{
+    res.status(411).json({
+        msg : "bad request is been sent"
+    })
+}
 })
+function checkk(){
+  let pint=false;
+  for(let i=0;i<users[0].kidney.length;i++){
+    if(!users[0].kidney[i].healthy){
+        pint=true;
+    }
+  }
+  return pint;
+}
 
 app.listen(3000);
