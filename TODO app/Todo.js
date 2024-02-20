@@ -11,12 +11,12 @@
     Response: 200 OK with an array of todo items in JSON format.
     Example: GET http://localhost:3000/todos
     
- Partial DONE 2.GET /todos/:id - Retrieve a specific todo item by ID
+ DONE 2.GET /todos/:id - Retrieve a specific todo item by ID
     Description: Returns a specific todo item identified by its ID.
     Response: 200 OK with the todo item in JSON format if found, or 404 Not Found if not found.
     Example: GET http://localhost:3000/todos/123
     
-  3. POST /todos - Create a new todo item
+ Done 3. POST /todos - Create a new todo item
     Description: Creates a new todo item.
     Request Body: JSON object representing the todo item.
     Response: 201 Created with the ID of the created todo item in JSON format. eg: {id: 1}
@@ -39,20 +39,20 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  const uuid = require ("uuid");
+  let express = require('express');
+  let bodyParser = require('body-parser');
+  let uuid = require ("uuid");
   
-  const app = express();
+  let app = express();
   var user=[];
 
   app.use(bodyParser.json());
 
   app.post("/todos",(req,res)=>{
-    const {title ,statuss, description}=req.body;
+    let {title ,statuss, description}=req.body;
 
-    const id=uuid.v4();
-    const newtodo={id,title,statuss,description};
+    let id=uuid.v4();
+    let newtodo={id,title,statuss,description};
     user.push(newtodo)
 
     res.json({
@@ -60,7 +60,7 @@
     })
   })
   app.get("/todos",(req,res)=>{
-    const {id}=req.query;
+    let {id}=req.query;
     if(id){
       let r=null;
       for(let i=0;i<user.length;i++){
@@ -82,9 +82,52 @@
   })
 
 
-  // app.put("/todos",(req,res)=>{
-  //   for(let a=0;a<user.length;a++){
-  //     if(user[a].id==)
-  //   }
-  // })
+  app.put("/todos",(req,res)=>{
+    let {id}=req.query;
+    let {title,statuss,description}=req.body;
+    if(id){
+      let r=null;
+      for(let i=0;i<user.length;i++){
+        if(id===user[i].id){
+          r=user[i];
+          user[i].title=title || user[i].title
+          user[i].statuss=statuss || user[i].statuss
+          user[i].description=description || user[i].description
+          break;
+        }
+      }
+      if(r){
+        res.status(200).json({msg: "Updted successfully"})
+      }
+      else{
+        res.status(404).json({Error:"ID not found"});
+      }
+    }
+    else{
+      res.status(400).json({MSG:"please enter ID in the url"});
+    }
+
+  })
+  app.delete("/todos", (req, res) => {
+    const {id} = req.query; // Access id property from req.query
+    if (id) {
+      let r = null; // Declare r with let
+      for (let i = 0; i < user.length; i++) {
+        if (user[i].id === id) {
+          r = user[i];
+          user.splice(i, 1); // Remove the item from the user array
+          break;
+        }
+      }
+      if (r) {
+        res.status(200).json({ msg: "TODO item was found and deleted" });
+      } else {
+        res.status(404).json({ msg: "TODO item was not found" });
+      }
+    } else {
+      res.status(400).json({ msg: "No ID was given" });
+    }
+  });
+  
+
 app.listen(3000);
