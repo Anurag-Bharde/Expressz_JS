@@ -4,9 +4,9 @@ const app= express();
 var users =[{
     name:'John',
     kidney:[{
-        healthy: false
+        healthy: true
     },{
-        healthy: false
+        healthy: true
     },{
         healthy: false
     }]
