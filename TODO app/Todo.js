@@ -109,13 +109,13 @@
 
   })
   app.delete("/todos", (req, res) => {
-    const {id} = req.query; // Access id property from req.query
+    const {id} = req.query; 
     if (id) {
-      let r = null; // Declare r with let
+      let r = null; 
       for (let i = 0; i < user.length; i++) {
         if (user[i].id === id) {
           r = user[i];
-          user.splice(i, 1); // Remove the item from the user array
+          user.splice(i, 1); 
           break;
         }
       }
