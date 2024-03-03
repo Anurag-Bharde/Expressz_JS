@@ -17,7 +17,7 @@ const fs = require('fs');
 const app = express();
 
 app.get("/files/:filename", (req, res) => {
-  const filee=req.params.filename;
+  let filee = './public/assets/'+req.query.filename;
   fs.readFile("filee","utf-8",(err,data)=>{
     res.send(data);
   })
