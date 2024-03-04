@@ -1,15 +1,20 @@
 const express=require ("express");
+const rateLimites=require("express-rate-limit")
 const app=express();
-const tr=express();
 
-tr.get("/",function(req,res){
-    res.send("<h1>hello . world . !</h1>");
+
+
+
+const limiterr=rateLimites({
+    windowMs:5000,
+    max: 5,
+    message: "too many req"
 })
 
+app.use(limiterr)
 app.get("/",function(req,res){
-    res.send("<h1>hello . world . Abz!</h1>");
+    res.send("aajab");
 })
 
 app.listen(3000);
 
-tr.listen(3001);

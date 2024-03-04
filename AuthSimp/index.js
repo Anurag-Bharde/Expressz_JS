@@ -1,6 +1,13 @@
 const express =require("express");
 const app=express();
 
+function timme(req,res,next){
+    req.a=new Date().getTime();
+    next();
+}
+
+app.use(timme)
+
 app.get("/health",function(req,res){
     const username=req.headers.username;
     const password=req.headers.password;
@@ -18,6 +25,8 @@ app.get("/health",function(req,res){
     res.json({
         msg:"kid is fine"
     })
+    const r=new Date().getTime();
+    console.log(r-req.a);
 });
 
 app.listen(3000);
