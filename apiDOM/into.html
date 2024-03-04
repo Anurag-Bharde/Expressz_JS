@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="resgo()">yeh ek hai</button>
+    <div id="userid"></div>
+    <script>
+        async function resgo(){
+            const a =await fetch("https://fakerapi.it/api/v1/persons");
+            const b=await a.json();
+            document.getElementById("userid").innerHTML=JSON.stringify(b)
+        }
+    </script>
+</body>
+</html>
