@@ -17,8 +17,8 @@ app.post("/health",(req,res)=>{
     if(!vue.success){
         res.status(400).json({msg:"Wrong Input"})
     }
-    res.send(vue);
     console.log(vue)
+    res.send(vue);
 })
 
 app.listen(3000);
