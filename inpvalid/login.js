@@ -14,6 +14,9 @@ app.post("/health",(req,res)=>{
     const {email,password,country}=req.body;
     const ans={email,password,country}
     const vue=schema.safeParse(ans);
+    if(!vue.success){
+        res.status(400).json({msg:"Wrong Input"})
+    }
     console.log(vue)
     res.send(vue);
 })
