@@ -1,17 +1,20 @@
 const express=require("express");
 const app=express();
+const zod=require("zod")
 
+const schema=zod.array(zod.number());
 app.use(express.json());
 
-function checkinp(req,res,next){
-   
+app.post("/health",(req,res)=>{
+    const kidney =req.body.kidney;
+    const response=schema.safeParse(kidney);
+  if(!response.success){
+    res.status(400).json({msg:"Wrong kind of input"});
+  }
+   else{ res.send({
+        response
+    })
 }
-
-app.post("/health", checkinp,(req,res)=>{
-    const kidey =req.body.kidneys;
-    const kidneylength=kidey.length;
-
-    res.send("kidney is fine"+kidneylength);
 })
 
 app.listen(3000);
