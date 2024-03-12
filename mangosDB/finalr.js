@@ -2,7 +2,7 @@ const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
 
-mongoose.connect("mongodb+srv://anuragadmin:KIkBqYjyBQZXxJ33@cluster0.3sk1xst.mongodb.net/user_app?retryWrites=true&w=majority")   
+mongoose.connect("url")   
 const Userr=mongoose.model('users',{name:String, email:String, password:String});
 
 
