@@ -97,7 +97,7 @@
         }
       }
       if(r){
-        res.status(200).json({msg: "Updted successfully"})
+        res.status(200).json({msg: "Updted successfully "})
       }
       else{
         res.status(404).json({Error:"ID not found"});
