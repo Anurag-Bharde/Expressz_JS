@@ -12,7 +12,7 @@
     Example: GET http://localhost:3000/todos
     
  DONE 2.GET /todos/:id - Retrieve a specific todo item by ID
-    Description: Returns a specific todo item identified by its ID.
+    Description: Returns a specific todo item identified by its  ID.
     Response: 200 OK with the todo item in JSON format if found, or 404 Not Found if not found.
     Example: GET http://localhost:3000/todos/123
     
