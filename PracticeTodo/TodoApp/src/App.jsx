@@ -8,17 +8,14 @@ import { Todos } from './Components/Todos'
 
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
+   fetch({})
 
   return (
     <>
      <Inputs />
      <Todos todos={[
-      {
-        Title:"Anurag",
-        Description:"BASE",
-        complete: false
-      }
+      {}
      ]} />
     </>
   )
