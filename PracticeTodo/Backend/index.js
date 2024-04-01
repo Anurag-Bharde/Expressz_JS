@@ -1,36 +1,38 @@
-const express=require('express');
+const express = require('express');
 const { createTodo,updateTodo } = require('./types');
-
-const {mongocreate} = require("./datab")
+const cors=require('cors')
+const {mongocreate, todo} = require("./datab")
 const app=express();
- 
+
 app.use(express.json())
+app.use(cors()); 
 
 
 app.get("/todos",async (req,res)=>{
-  const todos=await mongocreate.find({});
-
-  res.json({
-    todos
-  })
+    const todos=await mongocreate.find({});
+    res.json({
+        todos:[]
+    })
 })
 
 
-app.post("/create",async (req,res)=>{
-    const createdTodo=req.body;
-    const q1=createTodo.safeParse(createdTodo);
+
+app.post("/create", async (req,res)=>{
+    const ThinInput=req.body;
+    const q1=createTodo.safeParse(ThinInput);
     if(!q1.success){
       res.status(411).json({msg:"Todo Not created"})
       return 
     }
-   const savings=await new mongocreate({
-        title:createdTodo.title,
-        description:createdTodo.description,
+   await todo.create({
+        title:ThinInput.title,
+        description:ThinInput.description,
         completed:false
     })
-    savings.save();
+    // savings.save();
     res.json({Msg:"Data stored in database"})
 })
+
 
 app.put("/completed", async (req,res)=>{
     const updatedTodo=req.body;
@@ -49,6 +51,5 @@ app.put("/completed", async (req,res)=>{
             msg:'Tdod marked completed'
         })
     })
-
 
 app.listen(3000);

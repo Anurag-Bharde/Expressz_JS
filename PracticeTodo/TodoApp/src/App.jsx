@@ -9,7 +9,11 @@ import { Todos } from './Components/Todos'
 
 function App() {
   const [count, setCount] = useState(0)
-   fetch({})
+  
+   fetch("http://localhost:3000/todos").then(async function(res){
+    const jsons=await res.json();
+    setCount(jsons.todos)
+   })
 
   return (
     <>

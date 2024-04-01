@@ -1,4 +1,4 @@
-const { default: mongoose } = require('mongoose');
+const { mongoose } = require('mongoose');
 mongoose.connect("mongodb+srv://anuragadmin:KIkBqYjyBQZXxJ33@cluster0.3sk1xst.mongodb.net/TheTodo")
 
 
@@ -7,8 +7,8 @@ const todoSchema=mongoose.Schema({
     description:String,
     completed:Boolean
 })
-const mongocreate=mongoose.model('CreateTODO',todoSchema);
+const todo=mongoose.model('createtodos',todoSchema);
 
 module.exports={
-    mongocreate
+    todo
 }
