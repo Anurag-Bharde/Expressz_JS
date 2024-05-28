@@ -4,23 +4,14 @@ const jwtPassword = "123456";
 
 const app = express();
 app.use(express.json());
-const ALL_USERS = [
+const ALL_USERS=[
   {
-    username: "harkirat@gmail.com",
-    password: "123",
-    name: "harkirat singh",
-  },
-  {
-    username: "raman@gmail.com",
-    password: "123321",
-    name: "Raman singh",
-  },
-  {
-    username: "priya@gmail.com",
-    password: "123321",
-    name: "Priya kumari",
-  },
-];
+    username:"Anurag@gmail.com",
+    password:"asjflasjlfs",
+
+
+  }
+]
 
 function userExists(username, password) {
   // write logic to return true or false if this user exists
@@ -31,7 +22,6 @@ function userExists(username, password) {
     }
   }
    return false;
-  
 }
 
 app.post("/signin", function (req, res) {
