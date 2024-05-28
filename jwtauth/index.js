@@ -8,8 +8,14 @@ const ALL_USERS=[
   {
     username:"Anurag@gmail.com",
     password:"asjflasjlfs",
-
-
+  },
+  {
+    username:"Pikorasko@gmail.com",
+    password:"asdfghjkl",
+  },
+  {
+    username:"harsuBhushan@gmail.com",
+    password:"AryanKesu",
   }
 ]
 
@@ -46,9 +52,11 @@ app.get("/users", function (req, res) {
   res.json({
     users: ALL_USERS.filter(function(value){
        if(value.username==username){
+        console.log("Sahi hai")
         return true;
        }
        else{
+        console.log("Galat hai")
         return false;
        }
     })
