@@ -20,8 +20,6 @@ const ALL_USERS=[
 ]
 
 function userExists(username, password) {
-  // write logic to return true or false if this user exists
-  // in ALL_USERS array
   for(let i=0;i<ALL_USERS.length;i++){
     if(username==ALL_USERS[i].username  && password==ALL_USERS[i].password){
       return true;
