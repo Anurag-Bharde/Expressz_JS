@@ -1,6 +1,6 @@
 const {Admin}=require("../DB/datab")
 
-function adminMiddleware(req,res,next){
+function userMiddleware(req,res,next){
     const Username=req.headers.username;
     const Password=req.headers.password;
 
@@ -17,4 +17,4 @@ function adminMiddleware(req,res,next){
     })
 }
 
-module.exports=adminMiddleware
+module.exports=userMiddleware
