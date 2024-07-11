@@ -1,12 +1,13 @@
-const express=require("express");
-const app=express();
-const bodyParse=require("body-parser")
-const adminRout=require("./route/Admin");
-const userRout=require("./route/User")
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const adminRout = require("./route/admin");
+// const userRout = require("./route/user");
 
-// app.use(bodyParse.json());
-app.use("admin/",)
-//this is just a proof of work anbkc d the assidfsfsgn manet to change something
+app.use(bodyParser.json());
+app.use("/admin", adminRout);
+// app.use("/user", userRout);
 
-
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
